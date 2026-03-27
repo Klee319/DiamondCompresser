@@ -8,7 +8,7 @@ compressed:
       &6ただし失敗すると &e&nレベル Ⅰ &6 に戻ってしまいます！
   x16diamond:
     craftable: true
-    overenchant-rate: 0.25
+    overenchant-rate: 0.2
     overenchant-lore: |-
       &6低確率で最大レベルのエンチャントを更に強化できます
       &6ただし失敗すると &e&nレベル Ⅰ &6 に戻ってしまいます！
@@ -20,16 +20,125 @@ compressed:
       &6ただし失敗すると &e&nレベル Ⅰ &6 に戻ってしまいます！
   x256diamond:
     craftable: true
-    overenchant-rate: 0.6
+    overenchant-rate: 0.7
     overenchant-lore: |-
       &6高確率で最大レベルのエンチャントを更に強化できます
       &6ただし失敗すると &e&nレベル Ⅰ &6 に戻ってしまいます！
   x1024diamond:
     craftable: true
-    overenchant-rate: 0.9
+    overenchant-rate: 1.0
     overenchant-lore: |-
       &6高確率で最大レベルのエンチャントを更に強化できます
       &6ただし失敗すると &e&nレベル Ⅰ &6 に戻ってしまいます！
 
-enchant-level-limits:  # enchantment namespacedKey
-#  unbreaking: 10  # max level
+enchant-level-limits:
+
+  # ========== 剣 ==========
+  sharpness: 10          # 鋭さ (デフォルト最大: 5)
+  smite: 10              # アンデッド特効 (デフォルト最大: 5)
+  bane_of_arthropods: 10 # 虫特効 (デフォルト最大: 5)
+  knockback: 5           # ノックバック (デフォルト最大: 2)
+  fire_aspect: 5         # 火属性 (デフォルト最大: 2)
+  looting: 7             # ドロップ増加 (デフォルト最大: 3)
+  sweeping_edge: 6       # 範囲ダメージ増加 (デフォルト最大: 3)
+
+  # ========== ツール ==========
+  efficiency: 20         # 効率強化 (デフォルト最大: 5)
+  fortune: 7             # 幸運 (デフォルト最大: 3)
+  unbreaking: 7          # 耐久力 (デフォルト最大: 3)
+  silk_touch: 1        # シルクタッチ - レベル1のみのためオーバーエンチャント不可
+  mending: 1           # 修繕 - レベル1のみのためオーバーエンチャント不可
+
+  # ========== 弓 ==========
+  power: 10              # 射撃ダメージ増加 (デフォルト最大: 5)
+  punch: 5               # パンチ (デフォルト最大: 2)
+  flame: 1             # フレイム - レベル1のみのためオーバーエンチャント不可
+  infinity: 1          # 無限 - レベル1のみのためオーバーエンチャント不可
+
+  # ========== 防具共通 ==========
+  protection: 5               # ダメージ軽減 (デフォルト最大: 4)
+  fire_protection: 5          # 火炎耐性 (デフォルト最大: 4)
+  blast_protection: 5         # 爆発耐性 (デフォルト最大: 4)
+  projectile_protection: 5    # 飛び道具耐性 (デフォルト最大: 4)
+  thorns: 6                   # 棘の鎧 (デフォルト最大: 3)
+
+  # ========== ヘルメット ==========
+  respiration: 6         # 水中呼吸 (デフォルト最大: 3)
+  aqua_affinity: 1     # 水中採掘 - レベル1のみのためオーバーエンチャント不可
+
+  # ========== ブーツ ==========
+  feather_falling: 8     # 落下耐性 (デフォルト最大: 4)
+  depth_strider: 6       # 水中歩行 (デフォルト最大: 3)
+  frost_walker: 5        # 氷渡り (デフォルト最大: 2)
+  soul_speed: 6          # ソウルスピード (デフォルト最大: 3)
+
+  # ========== レギンス ==========
+  swift_sneak: 6         # スニーク速度上昇 (デフォルト最大: 3)
+
+  # ========== 釣り竿 ==========
+  luck_of_the_sea: 6     # 宝釣り (デフォルト最大: 3)
+  lure: 6                # 入れ食い (デフォルト最大: 3)
+
+  # ========== トライデント ==========
+  riptide: 6             # 激流 (デフォルト最大: 3)
+  loyalty: 6             # 忠誠 (デフォルト最大: 3)
+  impaling: 10           # 水生特効 (デフォルト最大: 5)
+  channeling: 1        # 召雷 - レベル1のみのためオーバーエンチャント不可
+
+  # ========== クロスボウ ==========
+  quick_charge: 6        # 高速装填 (デフォルト最大: 3)
+  piercing: 8            # 貫通 (デフォルト最大: 4)
+  multishot: 1         # 拡散 - レベル1のみのためオーバーエンチャント不可
+
+  # ========== メイス (1.21新規) ==========
+  breach: 8              # 防具貫通 (デフォルト最大: 4)
+  density: 10            # 重力 (デフォルト最大: 5)
+  wind_burst: 6          # 風爆発 (デフォルト最大: 3)
+
+  # ========== 槍 (1.21.11新規) ==========
+  lunge: 6               # ランジ (デフォルト最大: 3) ※修繕と排他
+
+# ========================================
+# ルートチェスト オーバーエンチャント設定
+# ========================================
+# 構造物のチェスト生成時に、低確率でオーバーエンチャント本を追加します
+# enabled: 機能の有効/無効 (デフォルト: false)
+# max-bonus-level: デフォルト最大レベルからの追加レベル上限 (例: 2 → 鋭さ最大5 + 2 = Lv.7まで出現)
+# structures: 構造物ごとの出現確率 (0.0〜1.0)
+#   ※ レアな構造物ほど高確率に設定されています
+#   ※ 村など一般的な構造物は含まれていません
+
+loot-overenchant:
+  enabled: false
+  max-bonus-level: 2
+
+  structures:
+    # ===== 最高レア (12〜15%) =====
+    end_city_treasure: 0.15          # エンドシティ
+    ancient_city: 0.12               # 古代都市
+    ancient_city_ice_box: 0.12       # 古代都市 (氷室)
+    bastion_treasure: 0.12           # バスティオン (宝物庫)
+    trial_chambers/reward: 0.12      # トライアルチャンバー (報酬)
+
+    # ===== 高レア (8〜10%) =====
+    bastion_bridge: 0.10             # バスティオン (橋)
+    bastion_other: 0.08              # バスティオン (その他)
+    bastion_hoglin_stable: 0.08      # バスティオン (ホグリン小屋)
+    stronghold_library: 0.10         # 要塞 (図書室)
+    woodland_mansion: 0.08           # 森の洋館
+    trial_chambers/corridor: 0.08    # トライアルチャンバー (通路)
+
+    # ===== 中レア (5〜7%) =====
+    stronghold_corridor: 0.07        # 要塞 (通路)
+    stronghold_crossing: 0.07        # 要塞 (交差点)
+    buried_treasure: 0.07            # 埋もれた宝
+    shipwreck_treasure: 0.06         # 難破船 (宝箱)
+    nether_bridge: 0.05              # ネザー要塞
+    underwater_ruin_big: 0.05        # 海底遺跡 (大)
+
+    # ===== 低レア (2〜4%) =====
+    desert_pyramid: 0.04             # 砂漠のピラミッド
+    jungle_temple: 0.04              # ジャングルの寺院
+    pillager_outpost: 0.04           # ピリジャーの前哨基地
+    simple_dungeon: 0.03             # ダンジョン (スポナー部屋)
+    shipwreck_supply: 0.02           # 難破船 (補給品)
