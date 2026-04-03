@@ -31,6 +31,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class PluginConfig
 extends BukkitConfigDriver {
     private final Map<NamespacedKey, Integer> enchantLevelLimits = Maps.newHashMap();
+    private boolean allowUndefinedOverenchant;
     private boolean lootOverenchantEnabled;
     private int lootOverenchantMaxBonusLevel;
     private final Map<String, Double> lootOverenchantStructures = Maps.newHashMap();
@@ -67,6 +68,10 @@ extends BukkitConfigDriver {
 
     private void loadEnchantLevelLimits() {
         this.enchantLevelLimits.clear();
+        if (!this.config.contains("allow-undefined-overenchant")) {
+            this.getLogger().info("[DiamondCompressor] 'allow-undefined-overenchant' が設定にありません。デフォルト値 false を使用します。未定義エンチャントのオーバーエンチャントは無効です。");
+        }
+        this.allowUndefinedOverenchant = this.config.getBoolean("allow-undefined-overenchant", false);
         ConfigurationSection section = this.config.getConfigurationSection("enchant-level-limits");
         if (section == null) {
             return;
@@ -92,7 +97,10 @@ extends BukkitConfigDriver {
             return false;
         }
         int maxLimit = this.getMaxEnchantLevel(enchantment.getKey());
-        return maxLimit == -1 || level < maxLimit;
+        if (maxLimit == -1) {
+            return this.allowUndefinedOverenchant;
+        }
+        return level < maxLimit;
     }
 
     private void loadLootOverenchant() {
